@@ -1,0 +1,36 @@
+{
+  "name": "wovencord",
+  "version": "0.0.1",
+  "description": "A discord.js framework written in TypeScript",
+  "main": "dist/all.js",
+  "scripts": {
+    "build": "tsc",
+    "build:check": "tsc --noEmit",
+    "test": "ts-node test/wovencord.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WovenCoast/wovencord.git"
+  },
+  "keywords": [
+    "discord.js",
+    "framework"
+  ],
+  "author": "WovenCoast <wovencord@mail.wovencoast.me>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WovenCoast/wovencord/issues"
+  },
+  "homepage": "https://github.com/WovenCoast/wovencord#readme",
+  "dependencies": {
+    "@types/node": "^13.11.0",
+    "chalk": "^4.0.0",
+    "discord.js": "^12.1.1",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "jest": "^25.2.7",
+    "ts-jest": "^25.3.1"
+  }
+}
