@@ -2,6 +2,7 @@ import { Client, ClientOptions } from "discord.js";
 import Console from "./Console";
 import Utils from "./Utils";
 import CommandHandler from "./CommandHandler";
+import EventHandler from "./EventHandler";
 
 interface WovenClientOptions {
   /**
@@ -37,7 +38,10 @@ const defaultOptions: WovenClientOptions = {
   eventDir: "/events",
   prefixes: ["!", "."],
   statusMessages: client => [
-    Utils.pluralify(client.users.cache.size, `user`) + "!",
+    Utils.pluralify(
+      client.users.cache.filter(user => !user.bot).size,
+      `human`
+    ) + "!",
     Utils.pluralify(client.guilds.cache.size, `guild`) + "!"
   ]
 };
@@ -55,6 +59,10 @@ export default class WovenClient extends Client {
    * The handler for commands of this bot
    */
   public commands: CommandHandler;
+  /**
+   * The handler for events of this bot
+   */
+  public events: EventHandler;
 
   /**
    * The client woven for perfection
@@ -69,6 +77,7 @@ export default class WovenClient extends Client {
     this.wovenOptions = Utils.mergeDefault(defaultOptions, options);
     this.console = new Console();
     this.commands = new CommandHandler(this, options.commandDir);
+    this.events = new EventHandler(this, options.eventDir);
 
     this.on("ready", () => {
       this.console.info(`Ready as ${this.user.tag}!`);

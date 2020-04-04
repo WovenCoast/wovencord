@@ -29,6 +29,8 @@ export default abstract class Command {
    */
   public category: string;
 
+  [key: string]: any;
+
   /**
    * A command
    * @param client Client associated with this command
